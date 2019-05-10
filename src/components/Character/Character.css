@@ -1,0 +1,10 @@
+.card {
+  height: 170px;
+  width: 170px;
+  overflow: hidden;
+}
+
+.card-height {
+  height: 100% !important;
+  width: 100% !important;
+}

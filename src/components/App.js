@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Banner from "./Banner";
 import Navbar from "./Navbar";
-import Character from "./Character";
+import Container from "./Container";
 import images from "../images";
 
 class App extends Component {
@@ -9,8 +9,16 @@ class App extends Component {
     score: 0,
     highScore: 0,
 
-    allCharacters: this.suffleArray()
+    navMsgColor: "",
+
+    allCharacters: this.shuffleArray(),
+
+    wasClicked: [],
+
+    shake: false
   };
+
+  clickEvent = this.checkClicked.bind(this);
 
   shuffleArray() {
     const newArr = images.slice();
@@ -24,11 +32,63 @@ class App extends Component {
     return shuffleArr;
   }
 
+  checkClicked(clickedElem) {
+    const prevState = this.state.wasClicked.slice();
+
+    const shuffled = this.shuffleArray();
+
+    let score = this.state.score;
+    let highScore = this.state.highScore;
+
+    if (!this.state.wasClicked.includes(clickedElem)) {
+      if (score === highScore) {
+        score++;
+        highScore++;
+      } else {
+        score++;
+      }
+      prevState.push(clickedElem);
+    }
+    if (this.state.wasClicked.includes(clickedElem)) {
+      let score = 0;
+      return this.setState({
+        score: score,
+        highScore: highScore,
+        navMsgColor: "incorrect",
+        navMessage: "Incorrect guess!",
+        allCharacters: shuffled,
+        wasClicked: [],
+        shake: true
+      });
+    }
+    this.setState({
+      score: score,
+      highScore: highScore,
+      navMsgColor: "correct",
+      navMessage: "You Guessed Correctly!",
+      allCharacters: shuffled,
+      wasClicked: prevState,
+      shake: false
+    });
+    return setTimeout(() => this.setState({ navMsgColor: "" }), 500);
+  }
+
   render() {
+    const state = this.state;
     return (
       <div>
-        <Navbar />
+        <Navbar
+          score={state.score}
+          highScore={state.highScore}
+          navMessage={state.navMessage}
+          navMsgColor={state.navMsgColor}
+        />
         <Banner />
+        <Container
+          shake={state.shake}
+          characters={state.allCharacters}
+          clickEvent={this.clickEvent}
+        />
       </div>
     );
   }
