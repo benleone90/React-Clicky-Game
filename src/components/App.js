@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import Navbar from "./Navbar";
 import Container from "./Container";
 import images from "../images";
+import Footer from "./Footer";
 
 class App extends Component {
   state = {
@@ -10,6 +11,8 @@ class App extends Component {
     highScore: 0,
 
     navMsgColor: "",
+
+    navMessage: "Click an image to begin!",
 
     allCharacters: this.shuffleArray(),
 
@@ -89,6 +92,7 @@ class App extends Component {
           characters={state.allCharacters}
           clickEvent={this.clickEvent}
         />
+        <Footer />
       </div>
     );
   }

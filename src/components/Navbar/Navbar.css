@@ -1,0 +1,63 @@
+.navbar {
+  background-color: #cccccc;
+  min-height: 70px;
+  font-size: 18px;
+  padding: 20px 0;
+  width: 100%;
+  white-space: nowrap;
+  display: flex;
+  position: fixed;
+  justify-content: space-around;
+}
+
+.navbar div {
+  text-align: center;
+  margin-bottom: 0px;
+  width: 33.3%;
+}
+
+.navbar div:first-child {
+  letter-spacing: 0.5px;
+  font-weight: 900;
+}
+
+.pipe {
+  margin: 0 10px;
+}
+
+.correct {
+  animation: correctGuess 0.5s;
+}
+.incorrect {
+  animation: incorrectGuess 0.5s;
+}
+
+@keyframes incorrectGuess {
+  0% {
+    color: black;
+  }
+  25% {
+    color: red;
+  }
+  75% {
+    color: red;
+  }
+  100% {
+    color: black;
+  }
+}
+
+@keyframes correctGuess {
+  0% {
+    color: black;
+  }
+  25% {
+    color: green;
+  }
+  75% {
+    color: green;
+  }
+  100% {
+    color: black;
+  }
+}

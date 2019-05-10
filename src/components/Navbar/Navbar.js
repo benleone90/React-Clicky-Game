@@ -4,8 +4,10 @@ import "./Navbar.css";
 const Navbar = props => (
   <div className="navbar">
     <div>Game of Thrones Clicky Game</div>
+    <div className={props.navMsgColor}>{props.navMessage}</div>
     <div>
-      Score: <span className="pipe">|</span> High Score:{" "}
+      Score: {props.score} <span className="pipe">|</span> High Score:{" "}
+      {props.highScore}
     </div>
   </div>
 );
