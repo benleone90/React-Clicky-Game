@@ -8,6 +8,7 @@ import Footer from "./Footer";
 class App extends Component {
   state = {
     score: 0,
+    
     highScore: 0,
 
     navMsgColor: "",
