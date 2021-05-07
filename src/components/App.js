@@ -6,23 +6,19 @@ import images from "../images";
 import Footer from "./Footer";
 
 class App extends Component {
-  state = {
-    score: 0,
-    
-    highScore: 0,
-
-    navMsgColor: "",
-
-    navMessage: "Click an image to begin!",
-
-    allCharacters: this.shuffleArray(),
-
-    wasClicked: [],
-
-    shake: false
-  };
-
-  clickEvent = this.checkClicked.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      score: 0,
+      highScore: 0,
+      navMsgColor: "",
+      navMessage: "Click an image to begin!",
+      allCharacters: this.shuffleArray(),
+      wasClicked: [],
+      shake: false,
+    };
+    this.clickEvent = this.checkClicked.bind(this);
+  }
 
   shuffleArray() {
     const newArr = images.slice();
@@ -62,7 +58,7 @@ class App extends Component {
         navMessage: "Incorrect guess!",
         allCharacters: shuffled,
         wasClicked: [],
-        shake: true
+        shake: true,
       });
     }
     this.setState({
@@ -72,7 +68,7 @@ class App extends Component {
       navMessage: "You Guessed Correctly!",
       allCharacters: shuffled,
       wasClicked: prevState,
-      shake: false
+      shake: false,
     });
     return setTimeout(() => this.setState({ navMsgColor: "" }), 500);
   }
